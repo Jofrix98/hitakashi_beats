@@ -1,0 +1,1015 @@
+:root {
+  --fs-300: 0.9375rem;
+  --fs-400: 1.0625rem;
+  --fs-500: 1.375rem;
+  --fs-600: 1.875rem;
+  --fs-700: 2rem;
+
+  --ff-body: "Roboto", sans-serif;
+  --ff-heading: "Playfair Display", serif;
+
+  --fw-400: 400;
+  --fw-700: 700;
+  --fw-900: 900;
+
+  --clr-primary-200: hsla(169, 70%, 95%, 1);
+  --clr-primary-300: hsla(169, 100%, 39%, 1);
+  --clr-primary-400: hsla(169, 100%, 26%, 1);
+  --clr-primary-500: hsla(169, 100%, 16%, 1);
+
+  --clr-neutral-100: hsla(0, 0%, 100%, 1);
+  --clr-neutral-300: hsla(0, 0%, 50%, 1);
+  --clr-neutral-400: hsla(0, 0%, 40%, 1);
+  --clr-neutral-500: hsla(0, 0%, 60%, 1);
+  --clr-neutral-900: hsla(0, 0%, 10%, 1);
+}
+
+@media (min-width: 35em) {
+  :root {
+    --fs-300: 1rem;
+    --fs-400: 1.125rem;
+    --fs-500: 1.5rem;
+    --fs-600: 2.25rem;
+    --fs-700: 3rem;
+  }
+}
+
+/* //////////////////////
+  RESET - source: https://piccalil.li/blog/a-modern-css-reset
+  /////////////////////// */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul:where([role="list"]),
+ol:where([role="list"]) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: #404040;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* //////////////////////
+  General styling
+  /////////////////////// */
+
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  color: var(--clr-neutral-900);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-900);
+  line-height: 1.1;
+}
+
+strong {
+  font-weight: var(--fw-700);
+}
+
+section,
+.section {
+  padding: min(10vh, 10em) 0;
+}
+
+
+
+/* //////////////////////
+  Utility Classes
+  /////////////////////// */
+
+/* select all direct childen of .flow
+   and add margin to the top for proper
+   spacing */
+
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-spacer, 1em);
+}
+
+.container {
+  margin-inline: auto;
+  padding-inline: 1.5em;
+  max-width: 72rem;
+}
+
+.container--narrow {
+  max-width: 65rem;
+}
+
+.flex-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, 1em);
+}
+
+.text-center {
+  text-align: center;
+  color: white;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 18px;
+  letter-spacing: 0px;
+  line-height: 1.4;
+}
+
+/* typgraphy */
+
+.article-title,
+.section-title {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 55px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.article-title {
+  font-size: var(--fs-700);
+}
+
+.back-video{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+/* //////////////////////
+  Header
+  /////////////////////// */
+.page-header {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  padding: 2em 0;
+  background-color: #000f2b;
+  transition: background-color 1s ease; /* Transición suave para el cambio de fondo */
+  z-index: 999;
+}
+
+/* Header en Scroll */
+
+.page-header.scrolled {
+  background-color: white;
+  opacity: 0.9;
+}
+
+.page-header__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Navegador */
+
+.nav-list {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-list a:focus,
+.nav-list a:hover {
+  color: white;
+  text-shadow: 0px 0px 20px white;
+}
+
+/* Scroll en el navegador */
+.page-header.scrolled .nav-list a {
+  color: black;
+}
+
+.page-header.scrolled .nav-list a:focus,
+.page-header.scrolled .nav-list a:hover {
+  text-shadow: 0px 0px 20px black;
+  
+}
+
+/* Imagen logo */
+.image_logo_header {
+  width: 80px;
+  height: 60px;
+  position: relative; /* Permite ajustar la posición de la imagen */
+  top: -15px; /* Ajusta el valor según tus necesidades */
+  left: -90px;
+  background-color: white;
+}
+
+/* Icono Lupa */
+.bi-search {
+  color: white;
+}
+
+.page-header.scrolled .bi-search{
+  color: black;
+}
+
+.bi-person-gear{
+  font-size: 1.5em;
+  position: relative; /* Permite ajustar la posición de la imagen */
+  top: -6px; /* Ajusta el valor según tus necesidades */
+  color: white;
+}
+
+.page-header.scrolled .bi-person-gear{
+  font-size: 1.5em;
+  position: relative; /* Permite ajustar la posición de la imagen */
+  top: -6px; /* Ajusta el valor según tus necesidades */
+  color: black;
+}
+
+/* //////////////////////
+  Footer
+  /////////////////////// */
+
+  .container-footer{
+    --logo-color: currentColor;
+    padding: 2em 0;
+    color: white;
+    background-color: #616161;
+    text-align: center;
+    box-shadow: 0px 0px 30px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .site-footer {
+    display: flex; /* Agrega flexbox al contenedor principal */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+  }
+  
+  .site-footer .icon-footer {
+    color: white;
+    margin: 0 1em; /* Agrega un margen horizontal para separar los iconos */
+  }
+  
+  .site-footer .icon-footer a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+/* //////////////////////
+  Homepage
+  /////////////////////// */
+
+.hero > div {
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  gap: 3em;
+}
+
+.hero__image-container {
+  width: 100%;
+}
+
+.hero__image {
+  padding-top: 100px;
+  width: 25%;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-degradat {
+  width: 100%;
+  background-image: linear-gradient(to top, #000f2b, rgba(0, 15, 43, 0));
+}
+
+.slogan{
+  padding-top: 40px;
+  color: rgb(220, 220, 220);
+  text-align: center;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.scroll-link{
+  scroll-behavior: smooth;
+  transition-duration: 3s;
+  font-size: 48px; /* Ajusta el tamaño del icono según tus necesidades */
+  margin-top: 100px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  color: inherit;
+  color: rgb(220, 220, 220);
+}
+
+@media (min-width: 45em) {
+  .hero > div {
+    grid-auto-flow: column;
+  }
+}
+
+.featured-articles {
+  background-color: #000f2b;
+}
+
+.individual_article{
+  box-shadow: 0px 0px 30px 24px rgba(0, 0, 0, 0.25);
+  background-color: #323444;
+  border-radius: 10px;
+  padding-left: 50px;
+}
+
+.articles__list {
+  --flow-spacer: 3rem;
+  margin: 6rem 0;
+}
+
+/* CAROUSEL PLAYLIST */
+
+.container-carousel a{
+
+  text-decoration: none;
+}
+
+.container-carousel input {
+
+  display: none;
+}
+
+.container-carousel {
+
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 600px;
+  display: flex;
+  transform-style: preserve-3d;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.cards {
+
+  position: relative;
+  height: 500px;
+  width: 360px;
+  margin-bottom: 20px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.cards label {
+
+  position: absolute;
+  width: 360px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  cursor: pointer;
+  transition: transform 0.55s ease;
+}
+
+.cards .card {
+  position: relative;
+  width: 360px;
+  height: 450px; /* Ajusta el valor de altura según tus necesidades */
+  background-color: #323444;
+  border-radius: 10px;
+  padding: 10px; /* Ajusta el valor de padding según tus necesidades */
+}
+
+.card .image{
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .image img{
+
+  border-radius: 5px;
+  box-shadow: 15px 15px 40px rgba(0, 0, 0, 50%);
+  margin-top: 10px;
+  width: 86%;
+  height: 180px;
+  object-fit: cover;
+  
+}
+
+.card .image .dots{
+
+  text-align: center;
+}
+
+.dots div{
+
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.dots div:nth-child(1){
+
+  background-color: var(--current-color1);
+}
+
+.dots div:nth-child(2){
+
+  background-color: #5B85F9;
+}
+
+.dots div:nth-child(3){
+
+  background-color: #000;
+}
+
+.card .infos{
+
+  display: block;
+  text-align: end;
+  padding-top: 10px;
+}
+
+.infos span{
+
+  display: block;
+}
+
+.infos .name{
+
+  font-size: 20px; /* Ajusta el valor de font-size según tus necesidades */
+  margin-bottom: 10px;
+  color: var(--current-color1);
+  letter-spacing: 8px;
+  padding-left: 25%;
+  transition: all .6s ease;
+  padding-top: 10px;
+}
+
+.infos .lorem{
+
+  font-size: 12px;
+  color: #ECEAED;
+  letter-spacing: 3px;
+}
+
+.card .btn-contact{
+
+  width: 100%;
+  height: 30px; /* Ajusta el valor de altura según tus necesidades */
+  margin: 15px auto; /* Ajusta el valor de margin según tus necesidades */
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: var(--current-color1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  letter-spacing: 10px;
+  font-weight: 700;
+  transition: all .7s ease;
+}
+
+.card .socials{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.socials i{
+
+  font-size: 15px;
+  transition: all .7s ease;
+  color: var(--current-color2);
+}
+
+
+
+#s1:checked ~ .cards #slide3,
+#s2:checked ~ .cards #slide1,
+#s3:checked ~ .cards #slide2 {
+  box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 45%);
+  transform: translate3d(-70%, 0, -220px);
+  --current-color1: #ECEAED;
+  --current-color2: #404457;
+}
+
+#s1:checked ~ .cards #slide1,
+#s2:checked ~ .cards #slide2,
+#s3:checked ~ .cards #slide3 {
+  box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 50%);
+  transform: translate3d(0, 0, 0);
+  --current-color1: #fad00c;
+  --current-color2: #ECEAED;
+}
+
+#s1:checked ~ .cards #slide2,
+#s2:checked ~ .cards #slide3,
+#s3:checked ~ .cards #slide1 {
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 45%);
+  transform: translate3d(70%, 0, -220px);
+  --current-color1: #ECEAED;
+  --current-color2: #404457;
+}
+
+/* //////////////////////
+  Individual article page
+  /////////////////////// */
+
+  .main-article {
+    margin-bottom: 3rem;
+  }
+
+  .main-article__figure figcaption {
+    margin: 1rem 0;
+    font-size: var(--fs-300);
+    opacity: .9;
+  }
+
+  .image_logo_inicio{
+    width: 100px;
+    height: 100px;
+  }
+/* //////////////////////
+  Article snippets
+  /////////////////////// */
+
+.snippet {
+  display: grid;
+  gap: 1em;
+  grid-template-areas:
+    "image"
+    "title"
+    "meta"
+    "body"
+    "button";
+}
+
+.snippet__image {
+  grid-area: image;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: calc(100% - 80px); /* Resta 20px para el margen */
+  margin: 40px; /* Define el margen alrededor de la imagen */
+}
+
+.snippet__title {
+  padding-top: 20px;
+  grid-area: title;
+  color: #ffffff;
+  text-align: left;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 28px;
+  font-style: italic;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.snippet__body{
+  color: #ffffff;
+  text-align: left;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 18px;
+  letter-spacing: 0px;
+  line-height: 1.4;;
+}
+.snippet__meta {
+  grid-area: meta;
+  color: var(--clr-neutral-300);
+}
+
+.snippet__meta span {
+  color: var(--clr-neutral-900);
+}
+
+.snippet .btn {
+  grid-area: button;
+}
+
+.snippet__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.snippet__title a:hover,
+.snippet__title a:focus {
+  color: var(--clr-primary-500);
+} 
+
+@media (min-width: 45em) {
+  .snippet {
+    grid-template-areas:
+      "title image"
+      "meta image"
+      "body image"
+      "button image";
+    grid-column-gap: 4em;
+    grid-template-columns: 1fr 40%;
+    grid-template-rows: min-content min-content min-content 1fr;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  padding: 0.75em 1.75em;
+  border-radius: 0.25em;
+  align-self: start;
+  justify-self: start;
+}
+
+.btn:focus {
+  outline: 0.125em solid var(--clr-primary-400);
+  outline-offset: 0.25em;
+}
+
+.btn--primary {
+  background: var(--clr-primary-400);
+  color: var(--clr-neutral-100);
+  font-weight: var(--fw-700);
+  border: 2px solid var(--clr-primary-400);
+}
+.btn--primary:hover,
+.btn--primary:focus {
+  background: var(--clr-primary-500);
+  border-color: var(--clr-primary-500); 
+}
+
+.btn--neutral {
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-neutral-900);
+  font-weight: var(--fw-700);
+  border: 2px solid var(--clr-neutral-900);
+}
+
+.btn--neutral:hover,
+.btn--neutral:focus {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-neutral-900);
+}
+
+/* //////////////////////
+  Contacto
+  /////////////////////// */
+
+.contact{
+  background-color: #404040;
+  min-height: 100vh;
+  padding: 50px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+}
+
+.contact-title{
+  padding-top: 30px;
+  color: #fdfdfd;
+  text-align: center;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 1;
+  background-color: #404040;
+}
+
+.contact .content{
+  max-width: 800px;
+  text-align: center;
+}
+
+.contact .content h2{
+  color: #fdfdfd;
+  text-align: center;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.contact .content p{
+  color: #fdfdfd;
+  text-align: center;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 32px;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.container-contact{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.container-contact .contactInfo{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-contact .contactInfo .box{
+  position: relative;
+  padding: 20px, 0;
+  display: flex;
+}
+
+.container-contact .contactInfo .box .icon{
+  min-width: 60px;
+  height: 60px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27px;
+}
+
+.container-contact .contactInfo .box .icon a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.container-contact .contactInfo .box .icon a :hover{
+  text-decoration: none;
+  color: inherit;
+  text-shadow: 0px 0px 20px white;
+}
+
+.container-contact .contactInfo .box .text{
+  display: flex;
+  margin-left: 20px;
+  color: white;
+  font-size: 16px;
+  flex-direction: column;
+  font-weight: 300;
+}
+
+.container-contact .contactInfo .box .text a{
+  text-decoration: none;
+}
+
+.container-contact .contactInfo .box .text a :hover{
+  text-decoration: none;
+  text-shadow: 0px 0px 20px white;
+}
+
+.container-contact .contactInfo .box .text h3{
+  font-weight: 500;
+  color: #fdfdfd;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 22px;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.contactForm{
+  width: 40%;
+  margin-top: 30px;
+  padding: 40px;
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0px 0px 30px 24px rgba(0, 0, 0, 0.25);
+  background-color: #616161;
+}
+
+.contactForm h2{
+  font-size: 30px;
+  color: white;
+  font-weight: 500;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+}
+
+.contactForm .inputBox{
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.contactForm .inputBox input,
+.contactForm .inputBox textarea{
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+  resize: none;
+  background-color: #616161;
+}
+
+.contactForm .inputBox span{
+  position: absolute;
+  Left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: white;
+}
+
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span,
+.contactForm .inputBox textarea:focus ~ span,
+.contactForm .inputBox textarea:valid ~ span{
+  color: #dddddd;
+  font-size: 12px;
+  transform: translateY(-20px);
+}
+
+.contactForm .inputBox input[type = "submit"]{
+  width: 100px;
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+}
+
+@media (max-width: 991px){
+
+  .contact{
+    padding: 50px;
+  }
+
+  .container-contact{
+    flex-direction: column;
+  }
+
+  .container-contact .contactInfo{
+    margin-bottom: 40px;
+  }
+
+  .container-contact .contactInfo,
+  .contactForm{
+    width: 100%;
+  }
+}
+
+.contactForm p{
+  text-align: center;
+  color: white;
+}
+
+/* //////////////////////
+  Terminos & Condiciones
+  /////////////////////// */
+
+.container-tc{
+  background-color: #404040;
+  padding-top: 5%;
+  padding-left: 10%;
+}
+
+.tc-title{
+  padding-top: 30px;
+  color: #fdfdfd;
+  text-align: center;
+  font-family: "Lucida Sans Unicode", " Lucida Grande", " sans-serif";
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 1;
+  background-color: #404040;
+}
+
+.container-tc .tc-text{
+  width: 90%;
+  box-shadow: 0px 0px 30px 24px rgba(0, 0, 0, 0.25);
+  background-color: #616161;
+}
+
+.container-tc .tc-text p{
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  color: white;
+  font-size: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: justify;
+  line-height: 1.4;
+}
+
+/* //////////////////////
+  Confirmación
+  /////////////////////// */
+
+.container-conf{
+  background-color: #404040;
+  padding-top: 5%;
+}
+
+.container-conf p{
+  color: white;
+  text-align: center;
+}
+
+/* //////////////////////
+  Filosofia
+  /////////////////////// */
+
+.container-filo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #404040;
+  padding-top: 5%;
+}
+  
+.container-filo img {
+  width: 50%;
+  height: auto;
+  box-shadow: 0px 0px 30px 24px rgba(0, 0, 0, 0.25);
+}
+  
